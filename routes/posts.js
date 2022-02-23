@@ -10,11 +10,22 @@ postRouter.get('/', (req, res) => { // this should get posts
 postRouter.post('/', (req, res) => {
   try {
     Post.create(req.body)
-    .then((result) => {
+    .then(result => {
       res.status(201).json({ result })
     }) 
   } catch(err) {
     res.status(400).json({ error: err })
+  }
+})
+
+postRouter.patch('/:id', (req, res) => {
+  try{
+    Post.update( { id: req.params.id , content: req.body.content, title: req.body.title } )
+    .then(result => { 
+      res.status(201).json( { result } )
+    })  
+  } catch(err) {
+    res.status(400).json( { error: err } )
   }
 })
 
