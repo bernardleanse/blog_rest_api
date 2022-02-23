@@ -30,6 +30,14 @@ class Post {
       }
     })
   }
+
+  static delete(data){
+    return prisma.post.delete({
+      where: {
+        id: parseInt(data.id)
+      }
+    })
+  }
 }
 
 module.exports = Post
